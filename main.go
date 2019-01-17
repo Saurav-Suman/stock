@@ -89,7 +89,7 @@ func stockServer(serverChan chan chan string) {
 	go func(target chan []sendData) {
 		i := 0
 		for {
-			time.Sleep(time.Second * 10)
+			time.Sleep(time.Second * 5)
 			i++
 			target <- []sendData{
 				{Name: "Apple", Price: (rand.Float32() * 5) + 5},

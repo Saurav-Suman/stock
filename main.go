@@ -53,7 +53,7 @@ func main() {
 	http.HandleFunc("/stock", homeHandler)
 
 	log.Println("Serving at localhost:5000...")
-	log.Fatal(http.ListenAndServe(":5000", nil))
+	log.Fatal(http.ListenAndServe(":0", nil))
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {

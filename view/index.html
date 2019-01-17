@@ -16,7 +16,7 @@
 
 
     <script>
-        var client = new WebSocket("ws://localhost/status");
+        var client = new WebSocket("wss://stock-media.herokuapp.com/status");
         var textArea = document.getElementById("text")
         client.onmessage = function (event) {
             textArea.innerHTML = event.data;

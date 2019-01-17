@@ -36,3 +36,5 @@
 [[constraint]]
   name = "github.com/gorilla/websocket"
   version = "1.4.0"
+[metadata.heroku]
+  root-package = "github.com/Saurav-Suman/stock"

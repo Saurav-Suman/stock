@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -53,7 +54,7 @@ func main() {
 	http.HandleFunc("/stock", homeHandler)
 
 	log.Println("Serving at localhost:5000...")
-	log.Fatal(http.ListenAndServe(":0", nil))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {

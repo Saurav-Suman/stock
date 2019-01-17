@@ -10,16 +10,16 @@
 
 <body>
 
-    <h2>Hello World</h2>
+    <h2>Stock App </h2>
 
     <span id="text"></span>
 
 
     <script>
-        var client = new WebSocket("ws://localhost:5000/status");
+        var client = new WebSocket("ws://localhost/status");
         var textArea = document.getElementById("text")
         client.onmessage = function (event) {
-            textArea.innerHTML = textArea.innerHTML + ' ' + event.data + '<br/>';
+            textArea.innerHTML = event.data;
         }
 
 

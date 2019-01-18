@@ -17,10 +17,60 @@
 
     <script>
         var client = new WebSocket("wss://stock-media.herokuapp.com/status");
-        var textArea = document.getElementById("text")
         client.onmessage = function (event) {
-            textArea.innerHTML = event.data;
+           var jsond=event.data
+           var tablestring = "<table border=1><tr><td><b>Company</b></td><td><b>Price</b></td><td><b>Last Update</b></td>"
+        for (var key in jsond) {
+            if (jsond[key].Name) {
+                if (!localStorage.getItem(jsond[key].Name)) {
+                    localStorage.setItem(jsond[key].Name, JSON.stringify({ "price": jsond[key].Price, "date": new Date() }));
+                }
+
+                var localdata = JSON.parse(localStorage.getItem(jsond[key].Name))
+                var color
+                if (jsond[key].Price > localdata.price) {
+                    color = "background-color:green;color:white"
+                    localStorage.setItem(jsond[key].Name, JSON.stringify({ "price": jsond[key].Price, "date": new Date().toISOString() }));
+                }
+                else if (jsond[key].Price < localdata.price) {
+                    color = "background-color:red;color:white"
+                    localStorage.setItem(jsond[key].Name, JSON.stringify({ "price": jsond[key].Price, "date": new Date().toISOString() }));
+                }
+                else
+                    color = "background-color:white"
+
+
+
+
+                var localdatafordisplay = JSON.parse(localStorage.getItem(jsond[key].Name))
+
+                var today = new Date();
+                var updated = new Date(localdatafordisplay.date);
+                var diffMs = (today - updated); // milliseconds between now & updated
+                var diffDays = Math.floor(diffMs / 86400000); // days
+                var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+                var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+                var datestr = diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes";
+
+
+                tablestring = tablestring + "<tr><td>" + jsond[key].Name + "</td><td style=" + color + ">" + jsond[key].Price + "</td><td>" + datestr + "</td></tr>"
+
+
+            }
         }
+        tablestring = tablestring + "</table>"
+
+        var textArea = document.getElementById("text")
+        textArea.innerHTML = tablestring;
+
+        }
+
+
+
+        //var jsond = [{ "Name": "Apple", "Price": 8.405392 }, { "Name": "Microsoft", "Price": 300 }, { "Name": "Google", "Price": 400 }, { "Name": "Salesforce", "Price": 500 }, { "Name": "LinkedIn", "Price": 7.4151506 }, { "Name": "Yahoo", "Price": 700 }, { "Name": "HP", "Price": 100 }, { "Name": "Dell", "Price": 1000 }, { "Name": "Levis", "Price": 9.049791 }, { "Name": "Bata", "Price": 200 }]
+
+
+        
 
 
     </script>

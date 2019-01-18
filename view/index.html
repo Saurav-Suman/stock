@@ -52,7 +52,8 @@
                 var diffDays = Math.floor(diffMs / 86400000); // days
                 var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
                 var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-                var datestr = diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes";
+                var diffSecs = Math.round((((diffMs % 86400000) % 3600000) / 60000) / 6000); // seconds
+                var datestr = diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes, "+diffSecs+ " seconds";
 
 
                 tablestring = tablestring + "<tr><td>" + jsond[key].Name + "</td><td style=" + color + ">" + jsond[key].Price + "</td><td>" + datestr + "</td></tr>"

@@ -95,11 +95,11 @@ func stockServer(serverChan chan chan string) {
 			target <- []sendData{
 				{Name: "Apple", Price: (rand.Float32() * 5) + 5},
 				{Name: "Microsoft", Price: 300},
-				{Name: "Google", Price: 400},
+				{Name: "Google", Price: (rand.Float32() * 300) + 5},
 				{Name: "Salesforce", Price: 500},
 				{Name: "LinkedIn", Price: (rand.Float32() * 10) + 5},
 				{Name: "Yahoo", Price: 700},
-				{Name: "HP", Price: 800},
+				{Name: "HP", Price: (rand.Float32() * 50) + 5},
 				{Name: "Dell", Price: 900},
 				{Name: "Levis", Price: (rand.Float32() * 13) + 5},
 				{Name: "Bata", Price: 330},

@@ -18,7 +18,9 @@
     <script>
         var client = new WebSocket("wss://stock-media.herokuapp.com/status");
         client.onmessage = function (event) {
+           console.log(event.data) 
            var jsond=event.data
+           console.log(jsond)
            var tablestring = "<table border=1><tr><td><b>Company</b></td><td><b>Price</b></td><td><b>Last Update</b></td>"
         for (var key in jsond) {
             if (jsond[key].Name) {
